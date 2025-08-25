@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<h2>Editar comentario en {{ comentario.producto}}</h2>
+<form method="post">
+    {% csrf_token %}
+    <textarea name="texto" class="form-control mb-2" required>{{ comentario.texto }}</textarea>
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <a href="{% url 'detalle_producto' comentario.producto.id %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

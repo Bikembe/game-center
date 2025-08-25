@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<h1>Bienvenido a Game Center</h1>
+<p>{{ empresa_info }}</p>
+
+<h2>Nuestros productos</h2>
+<div class="row">
+    {% for producto in productos_destacados %}
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ producto.nombre }}</h5>
+                <p class="card-text">{{ producto.descripcion|truncatechars:100 }}</p>
+                <a href="{% url 'detalle_producto' producto.id %}" class="btn btn-primary">Ver más</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <p>No hay productos por el momento.</p>
+    {% endfor %}
+</div>
+{% endblock %}

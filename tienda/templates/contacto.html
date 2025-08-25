@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<h2>Contacto Proveedores</h2>
+
+<p>Proveedor: <strong>{{ proveedor.nombre_empresa }}</strong></p>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea id="descripcion" name="descripcion" class="form-control" rows="4" required>{{ request.POST.descripcion }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="archivo" class="form-label">Archivo adjunto</label>
+        <input type="file" id="archivo" name="archivo" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+{% if messages %}
+  <ul class="mt-3">
+    {% for message in messages %}
+      <li class="alert alert-{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% endblock %}

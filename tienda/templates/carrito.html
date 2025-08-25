@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block contenido %}
+<div class="container py-4">
+  <h2 class="mb-4">Tu carrito</h2>
+
+  {% if items %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th class="fs-5">Producto</th>
+          <th style="width: 140px;" class="fs-5">Cantidad</th>
+          <th class="fs-5">Precio unitario</th>
+          <th class="fs-5">Subtotal</th>
+          <th style="width: 120px;" class="fs-5">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td class="fs-6 fw-bold text-dark">{{ item.producto.nombre }}</td>
+          <td>
+            <form method="post" action="{% url 'editar_cantidad_carrito' item.id %}" class="d-flex gap-2 align-items-center">
+              {% csrf_token %}
+              <input type="number" name="cantidad" min="1" max="{{ item.producto.existencia }}" value="{{ item.cantidad }}" class="form-control form-control-sm" style="max-width: 70px;">
+              <button type="submit" class="btn btn-sm btn-primary">Actualizar</button>
+            </form>
+          </td>
+          <td class="fs-6 fw-bold text-primary">${{ item.producto.costo|floatformat:2 }}</td>
+          <td class="fs-6 fw-bold text-success">${{ item.producto.costo|mul:item.cantidad|floatformat:2 }}</td>
+          <td>
+            <form method="post" action="{% url 'eliminar_item_carrito' item.id %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar este producto del carrito?');">
+                Eliminar
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <h4>Total: <span class="text-success">${{ total|floatformat:2 }}</span></h4>
+    <form method="post" action="{% url 'finalizar_compra' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-lg btn-success px-4">Finalizar compra</button>
+    </form>
+  </div>
+
+  {% else %}
+  <p class="fs-5 text-muted">Tu carrito está vacío.</p>
+  {% endif %}
+</div>
+{% endblock %}
+

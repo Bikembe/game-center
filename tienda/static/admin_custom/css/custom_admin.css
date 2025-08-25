@@ -1,0 +1,89 @@
+/* custom_admin.css */
+
+/* Fondo oscuro y texto claro para el admin */
+body, .module caption {
+    background-color: #121212 !important;
+    color: #eeeeee !important;
+}
+
+/* Cambiar fondo del header */
+#header, #header h1, #header a {
+    background-color: #1f1f1f !important;
+    color: #0ff !important;
+    font-weight: bold;
+}
+
+/* Cambiar el color de los enlaces */
+a {
+    color: #0ff !important;
+}
+
+/* Cambiar el fondo y color de las filas en la lista de objetos */
+.change-list tr:nth-child(even) {
+    background-color: #222 !important;
+}
+.change-list tr:nth-child(odd) {
+    background-color: #1a1a1a !important;
+}
+
+/* Resaltar filas al pasar el mouse */
+.change-list tr:hover {
+    background-color: #333 !important;
+}
+
+/* Botones con colores más vibrantes */
+input[type="submit"], .btn, .button {
+    background-color: #0ff !important;
+    color: #121212 !important;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover, .btn:hover, .button:hover {
+    background-color: #08c !important;
+    color: #fff !important;
+}
+
+/* Panel lateral con fondo oscuro */
+#nav-sidebar {
+    background-color: #1f1f1f !important;
+}
+
+/* Formularios con fondo más oscuro */
+fieldset.module {
+    background-color: #1c1c1c !important;
+    border: 1px solid #0ff !important;
+    padding: 15px !important;
+    border-radius: 8px;
+}
+
+/* Inputs con borde y fondo personalizados */
+input, select, textarea {
+    background-color: #2a2a2a !important;
+    color: #eee !important;
+    border: 1px solid #0ff !important;
+    border-radius: 4px;
+}
+
+/* Scrollbar personalizado para Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #0ff #121212;
+}
+
+/* Scrollbar para Chrome, Edge y Safari */
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #121212;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #0ff;
+    border-radius: 10px;
+    border: 2px solid #121212;
+}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<h2>Historial de compras</h2>
+{% if compras %}
+    {% for compra in compras %}
+        <div class="card mb-3">
+            <div class="card-header">
+                Compra realizada el {{ compra.fecha|date:"d/m/Y H:i" }}
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for item in compra.detalles.all %}
+                <li class="list-group-item">
+                    {{ item.producto.nombre }} - Cantidad: {{ item.cantidad }} - Precio unitario: ${{ item.precio_unitario }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+{% else %}
+<p>No has realizado compras aún.</p>
+{% endif %}
+{% endblock %}

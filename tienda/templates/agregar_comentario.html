@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<h2>Agregar comentario a {{ producto.nombre }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <textarea name="texto" placeholder="Escribe tu comentario" class="form-control mb-2" required></textarea>
+    <button type="submit" class="btn btn-success">Enviar</button>
+</form>
+{% endblock %}
